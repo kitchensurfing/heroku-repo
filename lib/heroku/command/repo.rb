@@ -3,6 +3,10 @@ require "tempfile"
 # Slug manipulation
 class Heroku::Command::Repo < Heroku::Command::BaseWithApp
 
+  def cache_url
+    puts cache_delete_url
+  end
+
   # repo:purge-cache
   #
   # Deletes the contents the build cache in the repository
