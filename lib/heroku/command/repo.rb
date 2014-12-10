@@ -3,9 +3,15 @@ require "tempfile"
 # Slug manipulation
 class Heroku::Command::Repo < Heroku::Command::BaseWithApp
 
-  def cache_url
-    puts release.inspect
+  # repo:download-cache
+  #
+  # Downloads the application cache
+  #
+  def download_cache
+    puts cache_get_url.inspect
+    system("curl -o #{app}-cache.tgz '#{cache_get_url}'")
   end
+  alias_command "repo:download-cache", "repo:download_cache"
 
   # repo:purge-cache
   #
@@ -115,6 +121,10 @@ EOF
 
   def cache_delete_url
     release['cache_delete_url']
+  end
+
+  def cache_get_url
+    release['cache_get_url']
   end
 
   def release
