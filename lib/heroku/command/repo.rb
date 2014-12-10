@@ -4,7 +4,7 @@ require "tempfile"
 class Heroku::Command::Repo < Heroku::Command::BaseWithApp
 
   def cache_url
-    puts cache_delete_url
+    puts release.inspect
   end
 
   # repo:purge-cache
